@@ -103,7 +103,8 @@ public class addSpheres : MonoBehaviour {
 
 		for (int i = 0; i < xVals.Count; i++) {
 			for (int j = 0; j < archCount; j++) {
-				Object.Instantiate (objectToCreate, new Vector3 (xVals[i], yVals[i], j*archSpacing), Quaternion.identity);
+				Object.Instantiate (objectToCreate, new Vector3 (xVals[i] + Random.Range (-0.001f, 0.001f), yVals[i], j*archSpacing), Quaternion.identity);
+
 			}
 		}
 
