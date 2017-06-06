@@ -5,6 +5,7 @@ using UnityEngine;
 public class addSpheres : MonoBehaviour {
 
 	public GameObject objectToCreate;
+	public GameObject eye;
 	public int archCount;
 	public float archSpacing;
 
@@ -103,7 +104,14 @@ public class addSpheres : MonoBehaviour {
 
 		for (int i = 0; i < xVals.Count; i++) {
 			for (int j = 0; j < archCount; j++) {
-				Object.Instantiate (objectToCreate, new Vector3 (xVals[i] + Random.Range (-0.001f, 0.001f), yVals[i], j*archSpacing), Quaternion.identity);
+
+				var tempPosition = new Vector3 (xVals [i] + Random.Range (-0.001f, 0.001f), yVals [i], j * archSpacing);
+				var dist = Vector3.Distance(eye.transform.position, tempPosition);
+				tempPosition.y += dist;
+
+					// eye.position - tempPosition; 
+
+				Object.Instantiate (objectToCreate, tempPosition, Quaternion.identity);
 
 			}
 		}
