@@ -17,6 +17,7 @@ public class sphereBehaviours : MonoBehaviour {
 	public void fallDown () {
 		//Debug.Log ("You called it");
 		this.GetComponent<Rigidbody> ().useGravity = true;
+		this.GetComponent<Rigidbody> ().constraints = RigidbodyConstraints.None;
 
 	}
 }
