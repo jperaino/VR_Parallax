@@ -12,9 +12,9 @@ public class animateSpherelocation : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-//		for (int i = 0; i < spheres.Count; i++) {
-//			spheres [i].transform.Translate (0, -2.5f * Time.deltaTime, 0, Space.World);
-//		}
+		for (int i = 0; i < this.gameObject.transform.childCount; i++) {
+			this.gameObject.transform.GetChild(i).transform.Translate (0, -2.5f * Time.deltaTime, 0, Space.World);
+		}
 
 	}
 }
