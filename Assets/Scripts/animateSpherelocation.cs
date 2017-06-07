@@ -16,7 +16,7 @@ public class animateSpherelocation : MonoBehaviour {
 	bool isPressed = false;
 	bool isAnimating = false;
 
-	float speed = 10.0F;
+	float speed = 5.0F;
 	//private float startTime;
 
 
@@ -34,11 +34,13 @@ public class animateSpherelocation : MonoBehaviour {
 			isPressed = true;
 		}
 
+		// Initialize vectors when triggered
 		if (isPressed) {
 			InitializeVectors ();
 
 		}
 
+		// Animate when triggered
 		if (isAnimating) {
 			for (int i = 0; i < this.gameObject.transform.childCount; i++) {
 				var currentSphere = this.gameObject.transform.GetChild (i);
@@ -47,7 +49,11 @@ public class animateSpherelocation : MonoBehaviour {
 				float fracJourney = distCovered / journeyLengths [i];
 				currentSphere.transform.position = Vector3.Lerp (origins [i], destinations [i], fracJourney);
 
-//				this.gameObject.transform.GetChild(i).transform.Translate (0, -2.5f * Time.deltaTime, 0, Space.World);
+				// Make balls editable again once animation has finished
+				if (distCovered >= speed) {
+					isAnimating = false;
+				}
+
 			}
 
 		}
@@ -99,7 +105,7 @@ public class animateSpherelocation : MonoBehaviour {
 		}
 
 		isPressed = false;
-		startTime += Time.deltaTime;
+		startTime += Time.time;
 		isAnimating = true;
 	}
 
