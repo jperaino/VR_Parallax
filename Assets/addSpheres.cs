@@ -11,10 +11,15 @@ public class addSpheres : MonoBehaviour {
 
 	List<float> xVals = new List<float>();
 	List<float> yVals = new List<float>();
+	List<object> spheres = new List<object>();
+
+
 
 	// Use this for initialization
 
 	void Start () {
+
+		Vector3 eyeLocation = eye.transform.position;
 
 		// ADD x VALUES! Automate this, please. 
 		xVals.Add (11.295607f);
@@ -105,13 +110,25 @@ public class addSpheres : MonoBehaviour {
 		for (int i = 0; i < xVals.Count; i++) {
 			for (int j = 0; j < archCount; j++) {
 
-				var tempPosition = new Vector3 (xVals [i] + Random.Range (-0.001f, 0.001f), yVals [i], j * archSpacing);
-				var dist = Vector3.Distance(eye.transform.position, tempPosition);
-				tempPosition.y += dist;
+				// initialize position from rhino model
+				var tempPosition = new Vector3 (xVals [i] + Random.Range (-0.005f, 0.005f), yVals [i], j * archSpacing);
 
-					// eye.position - tempPosition; 
+				// get relationship to camera
+				float dist = Vector3.Distance(eyeLocation, tempPosition);
+				Vector3 vecPath = (tempPosition - eyeLocation).normalized;
 
-				Object.Instantiate (objectToCreate, tempPosition, Quaternion.identity);
+				// calculate new point
+				Vector3 newPosition = (vecPath * dist) + eyeLocation;
+
+				Debug.Log (newPosition);
+//				Debug.Log ("Eye location:" + eyeLocation);
+//				Debug.Log ("Sphere Origin:" + tempPosition);
+//				Debug.Log ("New Location:" + newPosition);
+
+
+				// instantiate sphere at points
+				spheres.Add(Object.Instantiate (objectToCreate, newPosition, Quaternion.identity));
+
 
 			}
 		}
