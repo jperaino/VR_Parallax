@@ -19,8 +19,6 @@ public class addSpheres : MonoBehaviour {
 
 	void Start () {
 
-		Vector3 eyeLocation = eye.transform.position;
-
 		// ADD x VALUES! Automate this, please. 
 		xVals.Add (11.295607f);
 		xVals.Add (	10.628941f);
@@ -105,7 +103,20 @@ public class addSpheres : MonoBehaviour {
 		yVals.Add (3.123938f);
 		yVals.Add (2.589428f);
 
+		assembleSpheres ();
 
+	}
+	
+	// Update is called once per frame
+	void Update () {
+		
+	}
+
+
+	// Instantiate spheres
+	public void assembleSpheres () {
+
+		Vector3 eyeLocation = eye.transform.position;
 
 		for (int i = 0; i < xVals.Count; i++) {
 			for (int j = 0; j < archCount; j++) {
@@ -132,15 +143,15 @@ public class addSpheres : MonoBehaviour {
 				//Vector3 newPosition = (vecPath * dist * dist / 10f) + eyeLocation;
 
 				//PATTERN 4: vertical skew
-//				Vector3 newPosition = (vecPath * dist * tempPosition.y/30) + eyeLocation;
+				//				Vector3 newPosition = (vecPath * dist * tempPosition.y/30) + eyeLocation;
 
 				//PATTERN 4: vertical sin skew
 				//Vector3 newPosition = (vecPath * dist * Mathf.Abs(Mathf.Sin(tempPosition.y))) + eyeLocation;
 
 				Debug.Log (newPosition);
-//				Debug.Log ("Eye location:" + eyeLocation);
-//				Debug.Log ("Sphere Origin:" + tempPosition);
-//				Debug.Log ("New Location:" + newPosition);
+				//				Debug.Log ("Eye location:" + eyeLocation);
+				//				Debug.Log ("Sphere Origin:" + tempPosition);
+				//				Debug.Log ("New Location:" + newPosition);
 
 
 				// instantiate sphere at points
@@ -151,9 +162,6 @@ public class addSpheres : MonoBehaviour {
 		}
 
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
+
 }
