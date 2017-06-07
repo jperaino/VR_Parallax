@@ -6,12 +6,13 @@ public class addSpheres : MonoBehaviour {
 
 	public GameObject objectToCreate;
 	public GameObject eye;
+	public GameObject spheres;
 	public int archCount;
 	public float archSpacing;
 
 	List<float> xVals = new List<float>();
 	List<float> yVals = new List<float>();
-	List<object> spheres = new List<object>();
+	//List<GameObject> spheres = new List<GameObject>();
 
 
 
@@ -109,7 +110,7 @@ public class addSpheres : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+		//updateSphereLocations (spheres);
 	}
 
 
@@ -148,17 +149,21 @@ public class addSpheres : MonoBehaviour {
 				//PATTERN 4: vertical sin skew
 				//Vector3 newPosition = (vecPath * dist * Mathf.Abs(Mathf.Sin(tempPosition.y))) + eyeLocation;
 
-				Debug.Log (newPosition);
-				//				Debug.Log ("Eye location:" + eyeLocation);
-				//				Debug.Log ("Sphere Origin:" + tempPosition);
-				//				Debug.Log ("New Location:" + newPosition);
-
-
+		
 				// instantiate sphere at points
-				spheres.Add(Object.Instantiate (objectToCreate, newPosition, Quaternion.identity));
-
+				var newSphere = GameObject.Instantiate (objectToCreate, newPosition, Quaternion.identity);
+				newSphere.transform.parent = spheres.transform;
 
 			}
+		}
+
+	}
+
+
+	public void updateSphereLocations (List<GameObject> spheres) {
+
+		for (int i = 0; i < spheres.Count; i++) {
+			spheres [i].transform.Translate (0, -2.5f * Time.deltaTime, 0, Space.World);
 		}
 
 	}
