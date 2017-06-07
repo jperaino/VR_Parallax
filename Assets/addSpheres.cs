@@ -119,8 +119,23 @@ public class addSpheres : MonoBehaviour {
 
 				// calculate new point
 
+				//PATTERN 0: ORIGINAL
+				Vector3 newPosition = (vecPath * dist) + eyeLocation;
+
 				//PATTERN 1: SINE CURVE
-				Vector3 newPosition = (vecPath * dist * Mathf.Abs(Mathf.Sin(i+j))) + eyeLocation;
+				//Vector3 newPosition = (vecPath * dist * Mathf.Abs(Mathf.Sin(i+j))) + eyeLocation;
+
+				//PATTERN 2: COSINE CURVE
+				//Vector3 newPosition = (vecPath * dist * Mathf.Abs(Mathf.Tan(i+j))) + eyeLocation;
+
+				//PATTERN 3: Log CURVE
+				//Vector3 newPosition = (vecPath * dist * dist / 10f) + eyeLocation;
+
+				//PATTERN 4: vertical skew
+//				Vector3 newPosition = (vecPath * dist * tempPosition.y/30) + eyeLocation;
+
+				//PATTERN 4: vertical sin skew
+				//Vector3 newPosition = (vecPath * dist * Mathf.Abs(Mathf.Sin(tempPosition.y))) + eyeLocation;
 
 				Debug.Log (newPosition);
 //				Debug.Log ("Eye location:" + eyeLocation);
