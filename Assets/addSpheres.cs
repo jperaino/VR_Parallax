@@ -117,41 +117,14 @@ public class addSpheres : MonoBehaviour {
 	// Instantiate spheres
 	public void assembleSpheres () {
 
-		Vector3 eyeLocation = eye.transform.position;
-
 		for (int i = 0; i < xVals.Count; i++) {
 			for (int j = 0; j < archCount; j++) {
 
 				// initialize position from rhino model
-				var tempPosition = new Vector3 (xVals [i] + Random.Range (-0.005f, 0.005f), yVals [i], j * archSpacing);
-
-				// get relationship to camera
-				float dist = Vector3.Distance(eyeLocation, tempPosition);
-				Vector3 vecPath = (tempPosition - eyeLocation).normalized;
-
-				// calculate new point
-
-				//PATTERN 0: ORIGINAL
-				Vector3 newPosition = (vecPath * dist) + eyeLocation;
-
-				//PATTERN 1: SINE CURVE
-				//Vector3 newPosition = (vecPath * dist * Mathf.Abs(Mathf.Sin(i+j))) + eyeLocation;
-
-				//PATTERN 2: COSINE CURVE
-				//Vector3 newPosition = (vecPath * dist * Mathf.Abs(Mathf.Tan(i+j))) + eyeLocation;
-
-				//PATTERN 3: Log CURVE
-				//Vector3 newPosition = (vecPath * dist * dist / 10f) + eyeLocation;
-
-				//PATTERN 4: vertical skew
-				//				Vector3 newPosition = (vecPath * dist * tempPosition.y/30) + eyeLocation;
-
-				//PATTERN 4: vertical sin skew
-				//Vector3 newPosition = (vecPath * dist * Mathf.Abs(Mathf.Sin(tempPosition.y))) + eyeLocation;
-
-		
+				var initPosition = new Vector3 (xVals [i] + Random.Range (-0.005f, 0.005f), yVals [i], j * archSpacing);
+						
 				// instantiate sphere at points
-				var newSphere = GameObject.Instantiate (objectToCreate, newPosition, Quaternion.identity);
+				var newSphere = GameObject.Instantiate (objectToCreate, initPosition, Quaternion.identity);
 				newSphere.transform.parent = spheres.transform;
 
 			}
