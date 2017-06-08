@@ -13,7 +13,7 @@ public class animateSpherelocation : MonoBehaviour {
 	public GameObject eye;
 
 	float startTime = 0f;
-	bool isPressed = false;
+	bool isClicked = false;
 	bool isAnimating = false;
 
 	float speed = 5.0F;
@@ -29,13 +29,13 @@ public class animateSpherelocation : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		//checking if Triggered is true and assigning it to a variable
-		if (GvrViewer.Instance.Triggered) {
-			isPressed = true;
-		}
+		// Check if Triggered is true and assign it to a variable
+//		if (GvrViewer.Instance.Triggered) {
+//			isClicked = true;
+//		}
 
 		// Initialize vectors when triggered
-		if (isPressed) {
+		if (isClicked) {
 			InitializeVectors ();
 
 		}
@@ -63,7 +63,7 @@ public class animateSpherelocation : MonoBehaviour {
 
 	// Initialize vector values
 	public void InitializeVectors() {
-		isPressed = true;
+		isClicked = true;
 
 		Vector3 eyeLocation = eye.transform.position;
 
@@ -104,9 +104,15 @@ public class animateSpherelocation : MonoBehaviour {
 			journeyLengths.Add (journeyLength);
 		}
 
-		isPressed = false;
+		isClicked = false;
 		startTime += Time.time;
 		isAnimating = true;
+	}
+
+
+	public void onClick () {
+		Debug.Log ("you did it!!!!!!");
+		isClicked = true;
 	}
 
 
