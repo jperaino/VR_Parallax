@@ -26,4 +26,7 @@ public class sphereBehaviours : MonoBehaviour {
 		this.gameObject.transform.parent = spheresDone.transform;
 
 	}
+		
+
+
 }
