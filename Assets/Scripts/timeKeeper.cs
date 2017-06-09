@@ -7,7 +7,7 @@ public class timeKeeper : MonoBehaviour {
 
 	Text timeText;
 	float timeRemaining;
-	int maxFall = 10;
+	int maxFall = 15;
 
 	// Use this for initialization
 	void Start () {
@@ -45,7 +45,9 @@ public class timeKeeper : MonoBehaviour {
 
 			for (int i = 0; i < maxFall; i++) {
 
-				GameObject sphere = spheres.transform.GetChild (0).gameObject;
+				int r = Random.Range (0, spheres.transform.childCount);
+
+				GameObject sphere = spheres.transform.GetChild (r).gameObject;
 
 				sphere.GetComponent<Rigidbody> ().useGravity = true;
 				sphere.GetComponent<Rigidbody> ().constraints = RigidbodyConstraints.None;
