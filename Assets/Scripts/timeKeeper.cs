@@ -12,7 +12,7 @@ public class timeKeeper : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		timeText = GetComponent<Text> ();
-		timeRemaining = 30.0f;
+		timeRemaining = 25.0f;
 	
 	}
 	
@@ -54,9 +54,7 @@ public class timeKeeper : MonoBehaviour {
 				sphere.transform.parent = spheresDone.transform;
 			
 			}
-
-
-			//yield return new WaitForSeconds(1f);
+				
 
 		} else if (spheres.transform.childCount > 0) {
 
