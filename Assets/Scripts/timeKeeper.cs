@@ -8,7 +8,7 @@ public class timeKeeper : MonoBehaviour {
 	Text timeText;
 	float timeRemaining;
 	int maxFall = 15;
-	//public bool isPlaying = false;
+	public bool isPlaying = true;
 
 	// Use this for initialization
 	void Start () {
@@ -23,11 +23,13 @@ public class timeKeeper : MonoBehaviour {
 		if (timeRemaining > 0) {
 			timeRemaining -= Time.deltaTime;
 			timeText.text = timeRemaining.ToString ("0.00");
+			isPlaying = true;
 
 		} else {
 
 			timeRemaining = 0;
 			timeText.text = "GAME OVER";
+			isPlaying = false;
 			StartCoroutine ("allFallDown");
 		}
 
