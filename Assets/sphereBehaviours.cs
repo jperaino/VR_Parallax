@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class sphereBehaviours : MonoBehaviour {
 
+	public AudioClip impact;
+	GvrAudioSource audio;
 
 
 	// Use this for initialization
 	void Start () {
-
-
+		
 	}
 	
 	// Update is called once per frame
@@ -27,6 +28,12 @@ public class sphereBehaviours : MonoBehaviour {
 
 	}
 		
+
+	void OnCollisionEnter()
+	{
+		this.gameObject.GetComponent<GvrAudioSource> ().Play ();
+	}
+
 
 
 }

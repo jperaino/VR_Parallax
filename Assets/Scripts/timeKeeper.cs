@@ -8,6 +8,7 @@ public class timeKeeper : MonoBehaviour {
 	Text timeText;
 	float timeRemaining;
 	int maxFall = 15;
+	//public bool isPlaying = false;
 
 	// Use this for initialization
 	void Start () {

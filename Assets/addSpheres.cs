@@ -60,7 +60,7 @@ public class addSpheres : MonoBehaviour {
 		xVals.Add (13.962274f);
 		xVals.Add (13.962274f);
 		xVals.Add (13.962274f);
-		xVals.Add (13.962274f);
+		//xVals.Add (13.962274f);
 
 		// ADD y VALUES! Automate this, please. 
 		yVals.Add (2.589428f);
@@ -102,7 +102,7 @@ public class addSpheres : MonoBehaviour {
 		yVals.Add (4.192959f);
 		yVals.Add (3.658449f);
 		yVals.Add (3.123938f);
-		yVals.Add (2.589428f);
+		//yVals.Add (2.589428f);
 
 		assembleSpheres ();
 
