@@ -13,4 +13,14 @@ public class gameLogic : MonoBehaviour {
 	void Update () {
 		
 	}
+
+	public void Reset () {
+
+		Application.LoadLevel (0);
+	}
+
+
+
+
+
 }
