@@ -5,54 +5,44 @@ using UnityEngine;
 public class cameraPosition : MonoBehaviour {
 
 	float stepSize = 3.0f;
-	int position = 2;
+	int position;
 	int positionCount = 4;
-	bool isPressed = false;
-	bool isAscending = true;
 	public GameObject movingUI;
+	public GameObject eye;
 
 	// Use this for initialization
 	void Start () {
-		
+		position = 2;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-		// Check if Triggered is true and assign it to a variable
-		if (GvrViewer.Instance.Triggered) {
-			isPressed = true;
+	}
+
+
+	public void rightClick () {
+
+		if ( position != positionCount) {
+
+			eye.transform.Translate (stepSize, 0, 0, Space.World); // move eye
+			movingUI.transform.Translate (stepSize, 0, 0, Space.World);
+			position += 1; // increment position
+
 		}
+	}
 
-		// Move if triggered
-		if (isPressed) {
+	public void leftClick () {
 
-			//Check if isAscending
-			if (isAscending) {
+		if ( position != 0) {
+			eye.transform.Translate ((stepSize * -1), 0, 0, Space.World); // move eye
+			movingUI.transform.Translate ((stepSize * -1), 0, 0, Space.World);
+			position -= 1; // increment position
 
-				this.gameObject.transform.Translate (stepSize, 0, 0, Space.World); // move eye
-				movingUI.transform.Translate (stepSize, 0, 0, Space.World);
-				position += 1; // increment position
-
-				//Check if maxed out 
-				if (position == positionCount) {
-					isAscending = false;
-				}
-			} else {
-				this.gameObject.transform.Translate ((stepSize * -1), 0, 0, Space.World); // move eye
-				movingUI.transform.Translate ((stepSize * -1), 0, 0, Space.World);
-			
-				position -= 1; // increment position
-
-				//Check if minned out
-				if (position == 0) {
-					isAscending = true;
-				}
-			}
-				
-			isPressed = false;
 		}
-
 
 	}
+
+
+
 }
