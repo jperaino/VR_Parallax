@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class cameraPosition : MonoBehaviour {
 
-	float stepSize = 5.0f;
+	float stepSize = 3.0f;
 	int position = 2;
 	int positionCount = 4;
 	bool isPressed = false;
 	bool isAscending = true;
+	public GameObject movingUI;
 
 	// Use this for initialization
 	void Start () {
@@ -30,6 +31,7 @@ public class cameraPosition : MonoBehaviour {
 			if (isAscending) {
 
 				this.gameObject.transform.Translate (stepSize, 0, 0, Space.World); // move eye
+				movingUI.transform.Translate (stepSize, 0, 0, Space.World);
 				position += 1; // increment position
 
 				//Check if maxed out 
@@ -38,6 +40,8 @@ public class cameraPosition : MonoBehaviour {
 				}
 			} else {
 				this.gameObject.transform.Translate ((stepSize * -1), 0, 0, Space.World); // move eye
+				movingUI.transform.Translate ((stepSize * -1), 0, 0, Space.World);
+			
 				position -= 1; // increment position
 
 				//Check if minned out
