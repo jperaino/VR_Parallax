@@ -7,8 +7,10 @@ public class cameraPosition : MonoBehaviour {
 	float stepSize = 3.0f;
 	int position;
 	int positionCount = 4;
+	float movementSpeed = 3f;
 	public GameObject movingUI;
 	public GameObject eye;
+	string easeing = "linear";
 
 	// Use this for initialization
 	void Start () {
@@ -17,30 +19,56 @@ public class cameraPosition : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+		
 	}
 
 
 	public void rightClick () {
 
-		if ( position != positionCount) {
+		// If the player isn't too far to the right
+		if (position != positionCount) {
 
-			eye.transform.Translate (stepSize, 0, 0, Space.World); // move eye
-			movingUI.transform.Translate (stepSize, 0, 0, Space.World);
+			// Generate new position
+			Vector3 newPos = eye.transform.position;
+			newPos.x += stepSize;
+
+			// Tween between current and new position
+			iTween.MoveTo (eye,
+				iTween.Hash (
+					"position", newPos,
+					"time", movementSpeed,
+					"easetype", easeing
+				)
+			);
+
 			position += 1; // increment position
-
+		
 		}
+			
 	}
 
 	public void leftClick () {
 
-		if ( position != 0) {
-			eye.transform.Translate ((stepSize * -1), 0, 0, Space.World); // move eye
-			movingUI.transform.Translate ((stepSize * -1), 0, 0, Space.World);
-			position -= 1; // increment position
+		// If the player isn't too far to the right
+		if (position != 0) {
+
+			// Generate new position
+			Vector3 newPos = eye.transform.position;
+			newPos.x -= stepSize;
+
+			// Tween between current and new position
+			iTween.MoveTo (eye,
+				iTween.Hash (
+					"position", newPos,
+					"time", movementSpeed,
+					"easetype", easeing
+				)
+			);
+
+			position -= 1; // decrement position
 
 		}
-
+			
 	}
 
 
