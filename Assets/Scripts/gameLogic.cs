@@ -23,11 +23,15 @@ public class gameLogic : MonoBehaviour {
 
 
 	public void gameIsEasy () {
-		difficulty = 0;
+		sphereAdderScript.archCount = 5;
+		sphereAdderScript.archSpacing = 2;
+		gameBegins ();
 	}
 
 	public void gameIsHard () {
-		difficulty = 1;
+		sphereAdderScript.archCount = 25;
+		sphereAdderScript.archSpacing = 1;
+		gameBegins ();
 	}
 
 

@@ -20,14 +20,13 @@ public class addSpheres : MonoBehaviour {
 
 	void Start () {
 
-
-
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		//updateSphereLocations (spheres);
 	}
+		
 
 	public void beginSphereAssembly () {
 		// ADD x VALUES! Automate this, please. 
