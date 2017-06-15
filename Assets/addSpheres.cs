@@ -20,6 +20,16 @@ public class addSpheres : MonoBehaviour {
 
 	void Start () {
 
+
+
+	}
+	
+	// Update is called once per frame
+	void Update () {
+		//updateSphereLocations (spheres);
+	}
+
+	public void beginSphereAssembly () {
 		// ADD x VALUES! Automate this, please. 
 		xVals.Add (11.295607f);
 		xVals.Add (	10.628941f);
@@ -106,11 +116,6 @@ public class addSpheres : MonoBehaviour {
 
 		assembleSpheres ();
 
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		//updateSphereLocations (spheres);
 	}
 
 
