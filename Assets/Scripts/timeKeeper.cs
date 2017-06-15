@@ -9,6 +9,7 @@ public class timeKeeper : MonoBehaviour {
 	float timeRemaining;
 	int maxFall = 15;
 	public bool isPlaying = false;
+	public bool didPlay = false;
 
 	// Use this for initialization
 	void Start () {
@@ -18,29 +19,35 @@ public class timeKeeper : MonoBehaviour {
 
 	public void startTimer () {
 		timeText = GetComponent<Text> ();
-		timeRemaining = 25.0f;
+		timeRemaining = 5.0f;
 		isPlaying = true;
+		didPlay = true;
 	}
 
 	
 	// Update is called once per frame
 	void Update () {
 
-		if (isPlaying = true) {
-			if (timeRemaining > 0) {
-				timeRemaining -= Time.deltaTime;
-				timeText.text = timeRemaining.ToString ("0.00");
-				isPlaying = true;
+		// If game is playing and time remains
+		if (timeRemaining > 0) {
+			timeRemaining -= Time.deltaTime;
+			timeText.text = timeRemaining.ToString ("0.00");
+			isPlaying = true;
 
-			} else {
+		// If game is not playing
+		} else {
 
-				timeRemaining = 0;
+			timeRemaining = 0;
+			isPlaying = false;
+			StartCoroutine ("allFallDown");
+		
+			if (didPlay == true) {
 				timeText.text = "GAME OVER";
-				isPlaying = false;
-				StartCoroutine ("allFallDown");
+			} else {
+				timeText.text = "Click start to begin";
 			}
-		}
 
+		}
 	}
 
 
