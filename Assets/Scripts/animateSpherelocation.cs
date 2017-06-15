@@ -115,5 +115,8 @@ public class animateSpherelocation : MonoBehaviour {
 		isClicked = true;
 	}
 
+	public void scaleItUp() {
+		this.gameObject.transform.localScale += new Vector3 (10, 10, 10);
+	}
 
 }

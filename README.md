@@ -9,7 +9,7 @@ _Built for iOS using Unity and Google's Cardboard SDK_
 
 #### Fundamentals (500 points): ####
 - __Scale Achievement__ (100 points)
-    _The user is a large figure within a great hall_
+    _The user is able to adjust the scale of the great hall by selecting the lower of the two boxes. They can then understand the change in scale by moving and watching that the spheres appear to fall much more slowly (though in reality, they are simply covering more ground)._
 - __Animation Achievement__ (100 points)
     _When the cube in the center of the scene is pressed, the spheres are animated into a new position. From the user's point of view, it appears that the spheres are simply growing in size, however, when the user moves his/her position, they can see that the spheres have actually moved in space._
 - __Locomotion Achievement__ (100 points)
