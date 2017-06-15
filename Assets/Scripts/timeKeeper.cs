@@ -8,31 +8,38 @@ public class timeKeeper : MonoBehaviour {
 	Text timeText;
 	float timeRemaining;
 	int maxFall = 15;
-	public bool isPlaying = true;
+	public bool isPlaying = false;
 
 	// Use this for initialization
 	void Start () {
+		isPlaying = false;
+		timeText = GetComponent<Text> ();
+	}
+
+	public void startTimer () {
 		timeText = GetComponent<Text> ();
 		timeRemaining = 25.0f;
-	
+		isPlaying = true;
 	}
+
 	
 	// Update is called once per frame
 	void Update () {
 
-		if (timeRemaining > 0) {
-			timeRemaining -= Time.deltaTime;
-			timeText.text = timeRemaining.ToString ("0.00");
-			isPlaying = true;
+		if (isPlaying = true) {
+			if (timeRemaining > 0) {
+				timeRemaining -= Time.deltaTime;
+				timeText.text = timeRemaining.ToString ("0.00");
+				isPlaying = true;
 
-		} else {
+			} else {
 
-			timeRemaining = 0;
-			timeText.text = "GAME OVER";
-			isPlaying = false;
-			StartCoroutine ("allFallDown");
+				timeRemaining = 0;
+				timeText.text = "GAME OVER";
+				isPlaying = false;
+				StartCoroutine ("allFallDown");
+			}
 		}
-
 
 	}
 

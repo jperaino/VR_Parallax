@@ -9,6 +9,7 @@ public class gameLogic : MonoBehaviour {
 	public addSpheres sphereAdderScript;
 	public GameObject startButton;
 	public GameObject gameUI;
+	public timeKeeper timeScript;
 
 	// Use this for initialization
 	void Start () {
@@ -35,6 +36,7 @@ public class gameLogic : MonoBehaviour {
 		sphereAdderScript.beginSphereAssembly ();
 		startButton.SetActive (false);
 		gameUI.SetActive (true);
+		timeScript.startTimer ();
 
 	}
 
