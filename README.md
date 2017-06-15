@@ -5,6 +5,8 @@ This project is built as the capstone project for the Udacity Virtual Reality Na
 
 _Built for iOS using Unity and Google's Cardboard SDK_
 
+__Video Link: __
+
 ## Achievements (total 1,750): ##
 
 #### Fundamentals (500 points): ####
@@ -32,3 +34,8 @@ _Built for iOS using Unity and Google's Cardboard SDK_
     - _Two rounds of user testing were held to develop the user interface and to improve user experience._
     - _The first round focused on locomotion, and tested several different types of movement. While earlier iterations did not use tweening in an attempt to avoid motion sickness, users reported that animating the movement made it more clear what was happening as their perspective shifted, and did not result in motion sickness._
     - _The second round of user testing focused on the UI, and resulted in user controls that move with the user as they change positions rather than staying in a globally fixed location._
+    
+    
+    _Note regarding rubric item: "Experience must convey an emotion": My strategy here was to use abstracted materials and geometries to create a disembodied emotion. The background colors are calm and reminiscent of a summer evening, and the pure geometries aim to create a sense of focus, eliminating distraction._
+    
+    _Note regarding rubric item: "Use at least 3 spatial audio clips": Each sphere in the scene is a GVR audio source, meaning there are close to 1,000 sources. They were carefully calibrated to avoid performance issues in the final animation where the spheres fall to the ground by only allowing the sound to be triggered upon collisions during gameplay._
