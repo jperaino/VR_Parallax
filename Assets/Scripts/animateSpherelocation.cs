@@ -92,7 +92,6 @@ public class animateSpherelocation : MonoBehaviour {
 
 			// Initialize new position
 			Vector3 newPosition = origin;
-			float scaleProportion = 1f;
 
 			//Get relationship to camera
 			float dist = Vector3.Distance(eyeLocation, origin);

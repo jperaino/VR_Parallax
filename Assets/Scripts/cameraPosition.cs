@@ -11,6 +11,9 @@ public class cameraPosition : MonoBehaviour {
 	public GameObject movingUI;
 	public GameObject eye;
 	string easeing = "linear";
+	bool didPenalize = false;
+
+//	public sphereBehaviours sphereScript;
 
 	// Use this for initialization
 	void Start () {
@@ -42,6 +45,11 @@ public class cameraPosition : MonoBehaviour {
 			);
 
 			position += 1; // increment position
+
+			if (!didPenalize) {
+				spherePenalty();
+				didPenalize = true;
+			}
 		
 		}
 			
@@ -67,10 +75,39 @@ public class cameraPosition : MonoBehaviour {
 
 			position -= 1; // decrement position
 
+			if (!didPenalize) {
+				spherePenalty();
+				didPenalize = true;
+			}
+
 		}
 			
 	}
 
 
+
+	public void spherePenalty() {
+
+		// !!BUG!! Fix would allow modulo or random to eliminate a percentage of spheres
+
+		GameObject spheresAll = GameObject.Find ("spheres");
+
+		for (int i = 0; i < spheresAll.transform.childCount; i++) {
+
+			if (i%1 == 0) {
+				Transform currentSphere = spheresAll.transform.GetChild(i);
+				currentSphere.GetComponent<Rigidbody> ().useGravity = true;
+				currentSphere.GetComponent<Rigidbody> ().constraints = RigidbodyConstraints.None;
+
+				GameObject spheresDone = GameObject.Find ("spheresDone");
+				currentSphere.gameObject.transform.parent = spheresDone.transform;
+
+			}
+
+
+		}
+
+
+	}
 
 }

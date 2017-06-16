@@ -37,7 +37,6 @@ public class sphereBehaviours : MonoBehaviour {
 			this.gameObject.GetComponent<GvrAudioSource> ().Play ();
 		}
 	}
-
-
+		
 
 }
