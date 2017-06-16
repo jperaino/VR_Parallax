@@ -9,6 +9,7 @@ public class animateSpherelocation : MonoBehaviour {
 	List<float> distances = new List<float> ();
 	List<float> journeyLengths = new List<float> ();
 	List<Vector3> vecPaths = new List<Vector3> ();
+	List<float> scaleProportions = new List<float> ();
 
 	public GameObject eye;
 
@@ -40,9 +41,12 @@ public class animateSpherelocation : MonoBehaviour {
 			InitializeVectors ();
 
 		}
-
+			
 		// Animate when triggered
 		if (isAnimating) {
+
+			Vector3 eyeLocation = eye.transform.position;
+
 			for (int i = 0; i < this.gameObject.transform.childCount; i++) {
 				var currentSphere = this.gameObject.transform.GetChild (i);
 
@@ -52,10 +56,18 @@ public class animateSpherelocation : MonoBehaviour {
 
 				currentSphere.transform.position = Vector3.Lerp (origins [i], destinations [i], fracJourney);
 
+				float newDistance = Vector3.Distance (eyeLocation, currentSphere.transform.position);
+				float scaleProportion = newDistance / distances[i];
+
+				float x = scaleProportion * .15f;
+				currentSphere.transform.localScale = new Vector3 (x, x, x);
+
 
 				// Make balls editable again once animation has finished
 				if (distCovered >= speed) {
 					isAnimating = false;
+
+
 				}
 
 			}
@@ -71,17 +83,16 @@ public class animateSpherelocation : MonoBehaviour {
 
 		Vector3 eyeLocation = eye.transform.position;
 
-		// Randomly select distortion method
-//		int caseSwitch = 0;
-
 		//Get origin points from spheres
 		for (int i = 0; i < this.gameObject.transform.childCount; i++) {
 
 			//origins.Add (this.gameObject.transform.GetChild (i).transform.position);
 			Vector3 origin = this.gameObject.transform.GetChild (i).transform.position;
 			origins.Add (origin);
+
 			// Initialize new position
 			Vector3 newPosition = origin;
+			float scaleProportion = 1f;
 
 			//Get relationship to camera
 			float dist = Vector3.Distance(eyeLocation, origin);
@@ -113,7 +124,6 @@ public class animateSpherelocation : MonoBehaviour {
 
 			// Calculate relationship between new and old positions
 			float journeyLength = Vector3.Distance (origin, newPosition);
-
 			journeyLengths.Add (journeyLength);
 
 		}
