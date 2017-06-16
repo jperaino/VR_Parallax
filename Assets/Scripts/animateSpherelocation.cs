@@ -20,7 +20,7 @@ public class animateSpherelocation : MonoBehaviour {
 	float speed = 5.0F;
 
 	// Select distortion method
-	public int caseSwitch = 0;
+	int caseSwitch;
 
 
 	// Use this for initialization
@@ -82,6 +82,9 @@ public class animateSpherelocation : MonoBehaviour {
 		isClicked = true;
 
 		Vector3 eyeLocation = eye.transform.position;
+
+		caseSwitch = Random.Range (0, 4);
+		Debug.Log (caseSwitch);
 
 		//Get origin points from spheres
 		for (int i = 0; i < this.gameObject.transform.childCount; i++) {

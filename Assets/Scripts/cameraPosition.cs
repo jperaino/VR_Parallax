@@ -90,23 +90,21 @@ public class cameraPosition : MonoBehaviour {
 
 		// !!BUG!! Fix would allow modulo or random to eliminate a percentage of spheres
 
-		GameObject spheresAll = GameObject.Find ("spheres");
-
-		for (int i = 0; i < spheresAll.transform.childCount; i++) {
-
-			if (i%1 == 0) {
-				Transform currentSphere = spheresAll.transform.GetChild(i);
-				currentSphere.GetComponent<Rigidbody> ().useGravity = true;
-				currentSphere.GetComponent<Rigidbody> ().constraints = RigidbodyConstraints.None;
-
-				GameObject spheresDone = GameObject.Find ("spheresDone");
-				currentSphere.gameObject.transform.parent = spheresDone.transform;
-
-			}
-
-
-		}
-
+//		GameObject spheresAll = GameObject.Find ("spheres");
+//
+//		for (int i = 0; i < spheresAll.transform.childCount; i++) {
+//
+//			if (i%1 == 0) {
+//				Transform currentSphere = spheresAll.transform.GetChild(i);
+//				currentSphere.GetComponent<Rigidbody> ().useGravity = true;
+//				currentSphere.GetComponent<Rigidbody> ().constraints = RigidbodyConstraints.None;
+//
+//				GameObject spheresDone = GameObject.Find ("spheresDone");
+//				currentSphere.gameObject.transform.parent = spheresDone.transform;
+//
+//			}
+//		}
+//
 
 	}
 
