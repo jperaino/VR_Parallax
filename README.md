@@ -5,7 +5,7 @@ This project is built as the capstone project for the Udacity Virtual Reality Na
 
 _Built for iOS using Unity and Google's Cardboard SDK_
 
-__[Video Walkthrough Link](https://vimeo.com/221818092)__
+__[Video Walkthrough Link](https://vimeo.com/221894069)__
 
 ## Achievements (total 1,750): ##
 
@@ -19,11 +19,11 @@ __[Video Walkthrough Link](https://vimeo.com/221818092)__
 - __Physics Achievement__ (100 points)
     _When the users look at spheres, the spheres are dislodged and fall to the bottom of the scene. A sound is played upon each collision. At the end of gameplay, the spheres all fall._
 - __Empathy Achievement__ (100 points)
-    _This game is a methaphor for empathetic thought. No lighting is applied to the spheres so that they become abstracted in space. From one point of view, there is chaos, but upon shifting his/her position, the user can see a coherent and familiar space. You can look at one thing from two different points of view and see something completely different._
+    _This game is a metaphor for empathetic thought. No lighting is applied to the spheres so that they become abstracted in space. From one point of view, there is chaos, but upon shifting his/her position, the user can see a coherent and familiar space. You can look at one thing from two different points of view and see something completely different._
     
 #### Completeness (750 points): ####
 - __Gamification Achievement__  (250 points)
-    _The goal of the game is to make as many spheres drop as possible within the alloted time. A scoreboard shows the time remaining and the number of spheres remaining in the scene. A lower score is a better outcome._
+    _The goal of the game is to make as many spheres drop as possible within the allotted time. A scoreboard shows the time remaining and the number of spheres remaining in the scene. A lower score is a better outcome._
 - __Alternative Storyline Achievement__ (250 points)
     _At the beginning of the game, the user is prompted with two alternative experiences: an easy version with fewer spheres, and a harder version with more spheres._
 - __3D Modeling Achievement__ (250 points)
