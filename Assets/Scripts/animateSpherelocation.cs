@@ -31,10 +31,6 @@ public class animateSpherelocation : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		// Check if Triggered is true and assign it to a variable
-//		if (GvrViewer.Instance.Triggered) {
-//			isClicked = true;
-//		}
 
 		// Initialize vectors when triggered
 		if (isClicked) {
@@ -46,6 +42,8 @@ public class animateSpherelocation : MonoBehaviour {
 		if (isAnimating) {
 
 			Vector3 eyeLocation = eye.transform.position;
+
+			List<GameObject> children = this.gameObject.GetChildren ();
 
 			for (int i = 0; i < this.gameObject.transform.childCount; i++) {
 				var currentSphere = this.gameObject.transform.GetChild (i);
@@ -61,6 +59,16 @@ public class animateSpherelocation : MonoBehaviour {
 
 				float x = scaleProportion * .15f;
 				currentSphere.transform.localScale = new Vector3 (x, x, x);
+
+
+				// Asign color to spheres on animation
+				// This feature has been turned off because of a bug in the GVR SDK
+				// To turn on, uncomment and assign the 'Unlit/Color' shader to the sphere prefab
+
+//				float cA = Random.value; 
+//				float cB = Random.value;
+//				float cC = Random.value; 
+//				children[i].GetComponent<Renderer>().material.color = new Color (cA,cB,cC,1);
 
 
 				// Make balls editable again once animation has finished
