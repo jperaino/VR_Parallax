@@ -9,6 +9,7 @@ public class addSpheres : MonoBehaviour {
 	public GameObject spheres;
 	public int archCount;
 	public float archSpacing;
+	public int caseSwitch;
 
 	List<float> xVals = new List<float>();
 	List<float> yVals = new List<float>();
@@ -29,6 +30,58 @@ public class addSpheres : MonoBehaviour {
 		
 
 	public void beginSphereAssembly () {
+
+//		caseSwitch = 1 ;
+		caseSwitch = Random.Range (0, 2);
+		Debug.Log (caseSwitch);
+
+		// POPULATE SPHERES
+		switch (caseSwitch)
+		{
+		case 0: // ARCHWAY
+			populateArchway ();
+			break;
+		case 1: // CYLINDER
+			populateCylinder ();
+			break;
+		default:
+			break;
+		}
+
+
+	}
+
+
+	// Instantiate spheres
+	public void assembleSpheres () {
+
+		for (int i = 0; i < xVals.Count; i++) {
+			for (int j = 0; j < archCount; j++) {
+
+				// initialize position from rhino model
+				var initPosition = new Vector3 (xVals [i] + Random.Range (-0.005f, 0.005f), yVals [i], j * archSpacing);
+						
+				// instantiate sphere at points
+				var newSphere = GameObject.Instantiate (objectToCreate, initPosition, Quaternion.identity);
+				newSphere.transform.parent = spheres.transform;
+
+			}
+		}
+
+	}
+
+
+	public void updateSphereLocations (List<GameObject> spheres) {
+
+		for (int i = 0; i < spheres.Count; i++) {
+			spheres [i].transform.Translate (0, -2.5f * Time.deltaTime, 0, Space.World);
+		}
+
+	}
+
+
+	void populateArchway () {
+
 		// ADD x VALUES! Automate this, please. 
 		xVals.Add (11.295607f);
 		xVals.Add (	10.628941f);
@@ -118,32 +171,33 @@ public class addSpheres : MonoBehaviour {
 	}
 
 
-	// Instantiate spheres
-	public void assembleSpheres () {
+	void populateCylinder () {
 
-		for (int i = 0; i < xVals.Count; i++) {
-			for (int j = 0; j < archCount; j++) {
+		float cylRadius = 5f;
+		int cylPtCount = 40;
+		Vector3 cylCenter = GameObject.Find ("GvrViewerMain").transform.position;
+		Debug.Log (cylCenter);
+
+		for (int j = 0; j < 20; j++) {
+			for (int i = 0; i < cylPtCount; i++) {
+
+				float degrees = ((360f / cylPtCount) * i);
+				float radians = degrees * Mathf.PI / 180f;
+
+				float posX = Mathf.Cos (radians) * cylRadius + cylCenter.x;
+				float posZ = Mathf.Sin (radians) * cylRadius + cylCenter.z;
+
 
 				// initialize position from rhino model
-				var initPosition = new Vector3 (xVals [i] + Random.Range (-0.005f, 0.005f), yVals [i], j * archSpacing);
-						
+				var initPosition = new Vector3 (posX, j/2, posZ);
+
 				// instantiate sphere at points
 				var newSphere = GameObject.Instantiate (objectToCreate, initPosition, Quaternion.identity);
 				newSphere.transform.parent = spheres.transform;
 
+
 			}
 		}
-
 	}
-
-
-	public void updateSphereLocations (List<GameObject> spheres) {
-
-		for (int i = 0; i < spheres.Count; i++) {
-			spheres [i].transform.Translate (0, -2.5f * Time.deltaTime, 0, Space.World);
-		}
-
-	}
-
 
 }
