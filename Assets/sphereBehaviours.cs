@@ -33,9 +33,9 @@ public class sphereBehaviours : MonoBehaviour {
 
 	void OnCollisionEnter()
 	{
-		if (gamePlayMode == true) {
-			this.gameObject.GetComponent<GvrAudioSource> ().Play ();
-		}
+//		if (gamePlayMode == true) {
+//			this.gameObject.GetComponent<GvrAudioSource> ().Play ();
+//		}
 	}
 		
 
