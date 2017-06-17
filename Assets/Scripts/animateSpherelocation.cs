@@ -12,12 +12,13 @@ public class animateSpherelocation : MonoBehaviour {
 
 	public GameObject eye;
 	public GameObject winner;
+	public GameObject colliderHolder;
 
 	float startTime = 0f;
 	bool isClicked = false;
 	bool isAnimating = false;
 
-	float speed = 5.0F;
+	float speed = 100.0F;
 
 	// Select distortion method
 	int caseSwitch;
@@ -92,7 +93,8 @@ public class animateSpherelocation : MonoBehaviour {
 
 		Vector3 eyeLocation = eye.transform.position;
 
-		caseSwitch = Random.Range (0, 4);
+		caseSwitch = 4;
+//		caseSwitch = Random.Range (0, 5);
 		Debug.Log (caseSwitch);
 
 		//Get origin points from spheres
@@ -127,6 +129,18 @@ public class animateSpherelocation : MonoBehaviour {
 			case 3: // VERTICAL SINE SKEW
 				newPosition = (vecPath * dist * Mathf.Abs(Mathf.Sin(origins[i].y))) + eyeLocation;
 				break;
+			case 4: // RAYCAST INTERSECTION
+
+				Collider coll = colliderHolder.GetComponent<Collider> ();
+
+				Ray ray = new Ray (eyeLocation, vecPath);
+				RaycastHit hit;
+
+				if (coll.Raycast (ray, out hit, 10000f)) {
+					newPosition = hit.point;
+				}
+				break;
+
 			default:
 				break;
 			}
