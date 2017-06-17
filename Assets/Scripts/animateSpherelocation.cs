@@ -9,9 +9,9 @@ public class animateSpherelocation : MonoBehaviour {
 	List<float> distances = new List<float> ();
 	List<float> journeyLengths = new List<float> ();
 	List<Vector3> vecPaths = new List<Vector3> ();
-	List<float> scaleProportions = new List<float> ();
 
 	public GameObject eye;
+	public GameObject winner;
 
 	float startTime = 0f;
 	bool isClicked = false;
@@ -88,6 +88,7 @@ public class animateSpherelocation : MonoBehaviour {
 	// Initialize vector values
 	public void InitializeVectors() {
 		isClicked = true;
+		determineWinningSphere ();
 
 		Vector3 eyeLocation = eye.transform.position;
 
@@ -151,5 +152,19 @@ public class animateSpherelocation : MonoBehaviour {
 	public void scaleItUp() {
 		this.gameObject.transform.localScale += new Vector3 (10, 10, 10);
 	}
+
+
+	public void determineWinningSphere() {
+
+		// Randomly select sphere
+		int ct = this.gameObject.transform.childCount;
+		int rnd = Random.Range (0, ct);
+		Transform winningSphere = this.gameObject.transform.GetChild (rnd);
+
+		// Assign winning sphere to winning parent gameObject
+		winningSphere.parent = winner.transform;
+
+	}
+
 
 }

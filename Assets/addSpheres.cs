@@ -212,8 +212,8 @@ public class addSpheres : MonoBehaviour {
 	void populateCube () {
 		
 		// Define cube dimensions and spacing
-		float edgeCount = 10f;
-		float ptSpc = 1f;
+		float edgeCount = 15f;
+		float ptSpc = .75f;
 
 		// Calculate amount to move cube to center on camera
 		Vector3 cubeCenter = GameObject.Find ("GvrViewerMain").transform.position;
