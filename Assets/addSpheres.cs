@@ -31,8 +31,8 @@ public class addSpheres : MonoBehaviour {
 
 	public void beginSphereAssembly () {
 
-//		caseSwitch = 1 ;
-		caseSwitch = Random.Range (0, 2);
+		caseSwitch = 2 ;
+//		caseSwitch = Random.Range (0, 2);
 		Debug.Log (caseSwitch);
 
 		// POPULATE SPHERES
@@ -44,9 +44,15 @@ public class addSpheres : MonoBehaviour {
 		case 1: // CYLINDER
 			populateCylinder ();
 			break;
+		case 2: // CUBE
+			populateCube ();
+			break;
 		default:
 			break;
 		}
+
+
+
 
 
 	}
@@ -177,8 +183,9 @@ public class addSpheres : MonoBehaviour {
 		int cylPtCount = 40;
 		Vector3 cylCenter = GameObject.Find ("GvrViewerMain").transform.position;
 		Debug.Log (cylCenter);
+		float height = 20f;
 
-		for (int j = 0; j < 20; j++) {
+		for (int j = 0; j < height; j++) {
 			for (int i = 0; i < cylPtCount; i++) {
 
 				float degrees = ((360f / cylPtCount) * i);
@@ -196,6 +203,49 @@ public class addSpheres : MonoBehaviour {
 				newSphere.transform.parent = spheres.transform;
 
 
+			}
+		}
+	}
+
+
+
+	void populateCube () {
+		
+		// Define cube dimensions and spacing
+		float edgeCount = 10f;
+		float ptSpc = 1f;
+
+		// Calculate amount to move cube to center on camera
+		Vector3 cubeCenter = GameObject.Find ("GvrViewerMain").transform.position;
+		Vector3 cA = new Vector3 (cubeCenter.x - ptSpc*(edgeCount-1)/2 , cubeCenter.y - ptSpc*(edgeCount-1)/2, cubeCenter.z - ptSpc*(edgeCount-1)/2);
+
+		// populate cube
+		for (int k = 0; k < 2; k++) {  						// Generate opposite sides
+			for (int j = 0; j < edgeCount; j++) {			// Generate rows
+				for (int i = 0; i < edgeCount; i++) {		// Generate columns
+
+					// Add minor variation to location to prevent spheres from sticking on top of each other
+					cA += new Vector3 (Random.Range (-0.005f, 0.005f), Random.Range (-0.005f, 0.005f), Random.Range (-0.005f, 0.005f));
+
+					// Populate horizontal planes
+					var initPosition = new Vector3 (i*ptSpc, k * (edgeCount - 1) * ptSpc, j*ptSpc);
+					initPosition += cA;
+					var newSphere = GameObject.Instantiate (objectToCreate, initPosition, Quaternion.identity);
+					newSphere.transform.parent = spheres.transform;
+
+					// Populate left and right planes
+					var initPosition2 = new Vector3 (i*ptSpc, j*ptSpc,  k * (edgeCount - 1) * ptSpc);
+					initPosition2 += cA;
+					var newSphere2 = GameObject.Instantiate (objectToCreate, initPosition2, Quaternion.identity);
+					newSphere2.transform.parent = spheres.transform;
+
+					// Populate front and back planes
+					var initPosition3 = new Vector3 (k * (edgeCount - 1) * ptSpc, j*ptSpc,  i*ptSpc);
+					initPosition3 += cA;
+					var newSphere3 = GameObject.Instantiate (objectToCreate, initPosition3, Quaternion.identity);
+					newSphere3.transform.parent = spheres.transform;
+
+				}
 			}
 		}
 	}
