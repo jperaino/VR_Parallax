@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class gameLogic : MonoBehaviour {
 
@@ -10,19 +11,34 @@ public class gameLogic : MonoBehaviour {
 	public GameObject startButton;
 	public GameObject gameUI;
 	public timeKeeper timeScript;
+	public GameObject spheres;
+	public GameObject scoreDisplay;
+
+	Text scoreText;
 
 	public bool isPlaying = false;
 	public bool didPlay = false;
 	public bool didWin = false;
 
+	int levelScore;
+
+	public static int level = 1;
+	public static int totalScore = 0;
+
 	// Use this for initialization
 	void Start () {
-
+		scoreText = scoreDisplay.GetComponent<Text> ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+
+		// Update score text if game is in session
+		if (isPlaying == true) {
+			levelScore = spheres.transform.childCount;
+			scoreText.text = levelScore.ToString ();
+		}
+
 	}
 
 
@@ -57,11 +73,18 @@ public class gameLogic : MonoBehaviour {
 	public void gameIsWon () {
 		Debug.Log ("you win");
 
-//		isPlaying = false;
-//		didPlay = true;
-//		didWin = true;
-//
-//		Debug.Log ("isPlaying: " + isPlaying + ", didPlay: " + didPlay + ", didWin: " + didWin);
+		totalScore += levelScore;
+
+		isPlaying = false;
+		didPlay = true;
+		didWin = true;
+
+		Debug.Log ("isPlaying: " + isPlaying + ", didPlay: " + didPlay + ", didWin: " + didWin);
+
+		gameLogic.level++;
+		Debug.Log ("level: " + gameLogic.level + ", total score: " + totalScore);
+
+
 
 	}
 

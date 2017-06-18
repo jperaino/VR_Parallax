@@ -34,11 +34,19 @@ public class timeKeeper : MonoBehaviour {
 		didWin = gameLogicScript.didWin;
 
 		// If game is playing and time remains
-		if (timeRemaining > 0) {
+		if (isPlaying && timeRemaining > 0) {
 			timeRemaining -= Time.deltaTime;
 			timeText.text = timeRemaining.ToString ("0.00");
 			gameLogicScript.isPlaying = true;
+		
+		// Else if the player won the game
+		} else if (didWin) {
+			timeRemaining = 0;
+			gameLogicScript.isPlaying = false;
+			StartCoroutine ("allFallDown");
 
+			timeText.text = "YOU WIN!";
+				 
 		// If game is not playing
 		} else {
 
@@ -46,8 +54,11 @@ public class timeKeeper : MonoBehaviour {
 			gameLogicScript.isPlaying = false;
 			StartCoroutine ("allFallDown");
 		
+			// If the player lost
 			if (didPlay == true) {
 				timeText.text = "GAME OVER";
+
+			// If the game has not yet begun
 			} else {
 				timeText.text = "Click start to begin";
 			}
