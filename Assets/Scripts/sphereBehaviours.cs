@@ -7,11 +7,13 @@ public class sphereBehaviours : MonoBehaviour {
 	public AudioClip impact;
 	GvrAudioSource audio;
 	GameObject timeKeeperHolder;
+	GameObject gameLogic;
 	bool gamePlayMode;
 
 	// Use this for initialization
 	void Start () {
 		timeKeeperHolder = GameObject.Find ("RemainingTime");
+		gameLogic = GameObject.Find ("gameLogic");
 	}
 	
 	// Update is called once per frame
@@ -40,6 +42,7 @@ public class sphereBehaviours : MonoBehaviour {
 
 		if (this.gameObject.tag == "winningSphere") {
 			Debug.Log ("you hit the winning sphere");
+			gameLogic.GetComponent<gameLogic> ().gameIsWon();
 		}
 
 	}
