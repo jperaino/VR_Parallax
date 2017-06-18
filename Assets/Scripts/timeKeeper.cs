@@ -19,7 +19,7 @@ public class timeKeeper : MonoBehaviour {
 
 	public void startTimer () {
 		timeText = GetComponent<Text> ();
-		timeRemaining = 25.0f;
+		timeRemaining = 20000.0f;
 		isPlaying = true;
 		didPlay = true;
 	}

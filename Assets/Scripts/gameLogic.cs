@@ -45,12 +45,16 @@ public class gameLogic : MonoBehaviour {
 	}
 
 
-
 	public void Reset () {
 		Application.LoadLevel (0);
 	}
 
 
+	public void gameIsWon () {
+		Debug.Log ("you win");
+
+
+	}
 
 
 

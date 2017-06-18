@@ -36,6 +36,12 @@ public class sphereBehaviours : MonoBehaviour {
 		if (gamePlayMode == true) {
 			this.gameObject.GetComponent<GvrAudioSource> ().Play ();
 		}
+
+
+		if (this.gameObject.tag == "winningSphere") {
+			Debug.Log ("you hit the winning sphere");
+		}
+
 	}
 		
 

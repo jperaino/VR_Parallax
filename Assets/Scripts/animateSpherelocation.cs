@@ -199,6 +199,7 @@ public class animateSpherelocation : MonoBehaviour {
 		}
 
 		bestTarget.parent = winner.transform;
+		bestTarget.tag = "winningSphere";
 
 	}
 
