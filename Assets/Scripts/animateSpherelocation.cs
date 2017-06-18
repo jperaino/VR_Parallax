@@ -196,8 +196,6 @@ public class animateSpherelocation : MonoBehaviour {
 				furthestDistanceSqr = dSqrToTarget;
 				bestTarget = child;
 			}
-
-			Debug.Log (dSqrToTarget + "huh" + furthestDistanceSqr);
 		}
 
 		bestTarget.parent = winner.transform;
