@@ -13,8 +13,11 @@ public class gameLogic : MonoBehaviour {
 	public timeKeeper timeScript;
 	public GameObject spheres;
 	public GameObject scoreDisplay;
+	public GameObject cameraHolder;
 
 	Text scoreText;
+
+	public Vector3 eyeLocation = new Vector3 (12f, 6.5f, 0);
 
 	public bool isPlaying = false;
 	public bool didPlay = false;
@@ -57,6 +60,8 @@ public class gameLogic : MonoBehaviour {
 
 	public void gameBegins () {
 		Debug.Log ("game is beginning");
+		cameraHolder.transform.position = eyeLocation;
+
 		sphereAdderScript.beginSphereAssembly ();
 		startButton.SetActive (false);
 		gameUI.SetActive (true);
