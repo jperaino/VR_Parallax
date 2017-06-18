@@ -44,6 +44,8 @@ public class animateSpherelocation : MonoBehaviour {
 
 			Vector3 eyeLocation = eye.transform.position;
 
+
+
 			List<GameObject> children = this.gameObject.GetChildren ();
 
 			for (int i = 0; i < this.gameObject.transform.childCount; i++) {
@@ -97,6 +99,9 @@ public class animateSpherelocation : MonoBehaviour {
 //		caseSwitch = Random.Range (0, 5);
 		Debug.Log (caseSwitch);
 
+		// Temporarily turn on collider object to test for collisions
+		colliderHolder.SetActive (true);
+
 		//Get origin points from spheres
 		for (int i = 0; i < this.gameObject.transform.childCount; i++) {
 
@@ -131,6 +136,8 @@ public class animateSpherelocation : MonoBehaviour {
 				break;
 			case 4: // RAYCAST INTERSECTION
 
+
+
 				Collider coll = colliderHolder.GetComponent<Collider> ();
 
 				Ray ray = new Ray (eyeLocation, vecPath);
@@ -152,6 +159,9 @@ public class animateSpherelocation : MonoBehaviour {
 			journeyLengths.Add (journeyLength);
 
 		}
+
+		// Turn off raycatching geometry 
+		colliderHolder.SetActive (false);
 
 		isClicked = false;
 		startTime += Time.time;
@@ -177,7 +187,6 @@ public class animateSpherelocation : MonoBehaviour {
 
 		// Assign winning sphere to winning parent gameObject
 		winningSphere.parent = winner.transform;
-
 	}
 
 

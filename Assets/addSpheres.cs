@@ -31,8 +31,8 @@ public class addSpheres : MonoBehaviour {
 
 	public void beginSphereAssembly () {
 
-		caseSwitch = 2 ;
-//		caseSwitch = Random.Range (0, 2);
+//		caseSwitch = 2 ;
+		caseSwitch = Random.Range (0, 3);
 		Debug.Log (caseSwitch);
 
 		// POPULATE SPHERES
@@ -50,11 +50,6 @@ public class addSpheres : MonoBehaviour {
 		default:
 			break;
 		}
-
-
-
-
-
 	}
 
 
@@ -70,10 +65,8 @@ public class addSpheres : MonoBehaviour {
 				// instantiate sphere at points
 				var newSphere = GameObject.Instantiate (objectToCreate, initPosition, Quaternion.identity);
 				newSphere.transform.parent = spheres.transform;
-
 			}
 		}
-
 	}
 
 
@@ -82,7 +75,6 @@ public class addSpheres : MonoBehaviour {
 		for (int i = 0; i < spheres.Count; i++) {
 			spheres [i].transform.Translate (0, -2.5f * Time.deltaTime, 0, Space.World);
 		}
-
 	}
 
 
@@ -179,10 +171,9 @@ public class addSpheres : MonoBehaviour {
 
 	void populateCylinder () {
 
-		float cylRadius = 5f;
+		float cylRadius = 5.1f;
 		int cylPtCount = 40;
 		Vector3 cylCenter = GameObject.Find ("GvrViewerMain").transform.position;
-		Debug.Log (cylCenter);
 		float height = 20f;
 
 		for (int j = 0; j < height; j++) {
@@ -194,19 +185,19 @@ public class addSpheres : MonoBehaviour {
 				float posX = Mathf.Cos (radians) * cylRadius + cylCenter.x;
 				float posZ = Mathf.Sin (radians) * cylRadius + cylCenter.z;
 
-
 				// initialize position from rhino model
 				var initPosition = new Vector3 (posX, j/2, posZ);
+
+				// Add minor variation to location to prevent spheres from sticking on top of each other
+				initPosition += new Vector3 (Random.Range (-0.005f, 0.005f), Random.Range (-0.005f, 0.005f), Random.Range (-0.005f, 0.005f));
 
 				// instantiate sphere at points
 				var newSphere = GameObject.Instantiate (objectToCreate, initPosition, Quaternion.identity);
 				newSphere.transform.parent = spheres.transform;
-
-
+			
 			}
 		}
 	}
-
 
 
 	void populateCube () {
@@ -249,5 +240,4 @@ public class addSpheres : MonoBehaviour {
 			}
 		}
 	}
-
 }
