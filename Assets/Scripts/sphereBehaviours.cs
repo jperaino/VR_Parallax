@@ -24,6 +24,14 @@ public class sphereBehaviours : MonoBehaviour {
 	}
 
 	public void fallDown () {
+
+		// Test if the sphere is the winner
+		if (this.gameObject.tag == "winningSphere") {
+			// End the game
+			Debug.Log ("you hit the winning sphere");
+			gameLogic.GetComponent<gameLogic> ().gameIsWon();
+		}
+
 		GameObject spheresDone = GameObject.Find ("spheresDone");
 
 		this.GetComponent<Rigidbody> ().useGravity = true;
@@ -41,17 +49,7 @@ public class sphereBehaviours : MonoBehaviour {
 			// Play collision sound
 			this.gameObject.GetComponent<GvrAudioSource> ().Play ();
 
-			// Test if the sphere is the winner
-			if (this.gameObject.tag == "winningSphere") {
-				// End the game
-				Debug.Log ("you hit the winning sphere");
-				gameLogic.GetComponent<gameLogic> ().gameIsWon();
-			}
 		}
-
-
-
-
 	}
 		
 

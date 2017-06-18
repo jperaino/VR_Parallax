@@ -57,9 +57,11 @@ public class gameLogic : MonoBehaviour {
 	public void gameIsWon () {
 		Debug.Log ("you win");
 
-		isPlaying = false;
-		didPlay = true;
-		didWin = true;
+//		isPlaying = false;
+//		didPlay = true;
+//		didWin = true;
+//
+//		Debug.Log ("isPlaying: " + isPlaying + ", didPlay: " + didPlay + ", didWin: " + didWin);
 
 	}
 

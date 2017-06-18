@@ -51,15 +51,19 @@ public class timeKeeper : MonoBehaviour {
 			} else {
 				timeText.text = "Click start to begin";
 			}
-
 		}
 	}
 
 
 	public void startTimer () {
 
+		// Get text component of display
 		timeText = GetComponent<Text> ();
+
+		// Set length of game
 		timeRemaining = 20000.0f;
+
+		// Update game status
 		gameLogicScript.isPlaying = true;
 		gameLogicScript.didPlay = true;
 
