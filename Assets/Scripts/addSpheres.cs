@@ -5,11 +5,13 @@ using UnityEngine;
 public class addSpheres : MonoBehaviour {
 
 	public GameObject objectToCreate;
-	public GameObject eye;
+	public GameObject eyeHolder;
 	public GameObject spheres;
 	public int archCount;
 	public float archSpacing;
 	public int caseSwitch;
+
+	Vector3 eyeLocation;
 
 	List<float> xVals = new List<float>();
 	List<float> yVals = new List<float>();
@@ -20,7 +22,7 @@ public class addSpheres : MonoBehaviour {
 	// Use this for initialization
 
 	void Start () {
-
+		eyeLocation = gameLogic.eyeLocation;
 	}
 	
 	// Update is called once per frame
@@ -173,7 +175,8 @@ public class addSpheres : MonoBehaviour {
 
 		float cylRadius = 5.1f;
 		int cylPtCount = 40;
-		Vector3 cylCenter = GameObject.Find ("GvrViewerMain").transform.position;
+//		Vector3 cylCenter = GameObject.Find ("GvrViewerMain").transform.position;
+		Vector3 cylCenter = eyeLocation;
 		float height = 20f;
 
 		for (int j = 0; j < height; j++) {
@@ -209,7 +212,8 @@ public class addSpheres : MonoBehaviour {
 //		float ptSpc = .75f;
 
 		// Calculate amount to move cube to center on camera
-		Vector3 cubeCenter = GameObject.Find ("GvrViewerMain").transform.position;
+//		Vector3 cubeCenter = GameObject.Find ("GvrViewerMain").transform.position;
+		Vector3 cubeCenter = eyeLocation;
 		Vector3 cA = new Vector3 (cubeCenter.x - ptSpc*(edgeCount-1)/2 , cubeCenter.y - ptSpc*(edgeCount-1)/2, cubeCenter.z - ptSpc*(edgeCount-1)/2);
 
 		// populate cube

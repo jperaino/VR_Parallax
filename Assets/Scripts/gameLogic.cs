@@ -8,7 +8,7 @@ public class gameLogic : MonoBehaviour {
 	public int difficulty = 0;
 	public GameObject objectMaker;
 	public addSpheres sphereAdderScript;
-	public GameObject startButton;
+	public GameObject preGameUI;
 	public GameObject gameUI;
 	public timeKeeper timeScript;
 	public GameObject spheres;
@@ -17,11 +17,12 @@ public class gameLogic : MonoBehaviour {
 
 	Text scoreText;
 
-	public Vector3 eyeLocation = new Vector3 (12f, 6.5f, 0);
+	public static Vector3 eyeLocation = new Vector3 (12f, 6.5f, 0);
 
 	public bool isPlaying = false;
 	public bool didPlay = false;
 	public bool didWin = false;
+	public bool isAnimating = false;
 
 	int levelScore;
 
@@ -43,27 +44,33 @@ public class gameLogic : MonoBehaviour {
 		}
 
 	}
+		
+	public void animationBegins () {
+		Debug.Log ("animation is beginning");
+		isAnimating = true;
+		isPlaying = false;
+		didPlay = false;
+		didWin = false;
 
-
-	public void gameIsEasy () {
-		sphereAdderScript.archCount = 5;
-		sphereAdderScript.archSpacing = 2;
-		gameBegins ();
-	}
-
-	public void gameIsHard () {
 		sphereAdderScript.archCount = 25;
 		sphereAdderScript.archSpacing = 1;
-		gameBegins ();
+
+		preGameUI.SetActive (false);
+		sphereAdderScript.beginSphereAssembly ();
+		spheres.GetComponent<animateSpherelocation> ().onClick ();
+
 	}
 
 
 	public void gameBegins () {
 		Debug.Log ("game is beginning");
-		cameraHolder.transform.position = eyeLocation;
 
-		sphereAdderScript.beginSphereAssembly ();
-		startButton.SetActive (false);
+		isAnimating = false;
+		isPlaying = true;
+		didPlay = true;
+		didWin = false;
+
+
 		gameUI.SetActive (true);
 		timeScript.startTimer ();
 

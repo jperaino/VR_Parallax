@@ -10,7 +10,7 @@ public class animateSpherelocation : MonoBehaviour {
 	List<float> journeyLengths = new List<float> ();
 	List<Vector3> vecPaths = new List<Vector3> ();
 
-	public GameObject eye;
+	public GameObject eyeHolder;
 	public GameObject winner;
 	public GameObject colliderHolder;
 
@@ -18,6 +18,7 @@ public class animateSpherelocation : MonoBehaviour {
 	bool isClicked = false;
 	bool isAnimating = false;
 	bool didFinishAnimating = false;
+	gameLogic gameLogicScript;
 
 	float speed = 2.0F;
 
@@ -27,12 +28,13 @@ public class animateSpherelocation : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+		gameLogicScript = GameObject.Find ("gameLogic").GetComponent<gameLogic> ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
+		isAnimating = gameLogicScript.isAnimating;
 
 		// Initialize vectors when triggered
 		if (isClicked) {
@@ -43,7 +45,7 @@ public class animateSpherelocation : MonoBehaviour {
 		if (isAnimating) {
 
 			// Get camera location
-			Vector3 eyeLocation = eye.transform.position;
+			Vector3 eyeLocation = gameLogic.eyeLocation;
 
 			// Animate spheres
 			for (int i = 0; i < this.gameObject.transform.childCount; i++) {
@@ -76,8 +78,12 @@ public class animateSpherelocation : MonoBehaviour {
 				// Make balls editable again once animation has finished
 				if (distCovered >= 1) {
 					
-					isAnimating = false;
+					gameLogicScript.isAnimating = false;
 					didFinishAnimating = true;
+
+
+					gameLogicScript.gameBegins ();
+					eyeHolder.transform.position = gameLogic.eyeLocation;
 
 
 				}
@@ -99,7 +105,7 @@ public class animateSpherelocation : MonoBehaviour {
 	public void InitializeVectors() {
 		isClicked = true;
 
-		Vector3 eyeLocation = eye.transform.position;
+		Vector3 eyeLocation = gameLogic.eyeLocation;
 		colliderHolder.transform.rotation = Random.rotation;
 
 		caseSwitch = 4;
@@ -190,7 +196,7 @@ public class animateSpherelocation : MonoBehaviour {
 
 		foreach (Transform child in this.gameObject.transform) {
 			
-			Vector3 directionToTarget = child.position - eye.transform.position;
+			Vector3 directionToTarget = child.position - gameLogic.eyeLocation;
 			float dSqrToTarget = directionToTarget.sqrMagnitude;
 			if (dSqrToTarget > furthestDistanceSqr) {
 				furthestDistanceSqr = dSqrToTarget;

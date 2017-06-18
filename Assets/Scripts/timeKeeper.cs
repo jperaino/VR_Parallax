@@ -14,6 +14,7 @@ public class timeKeeper : MonoBehaviour {
 	public bool isPlaying;
 	public bool didPlay;
 	public bool didWin;
+	public bool isAnimating;
 
 	// Use this for initialization
 	void Start () {
@@ -32,35 +33,46 @@ public class timeKeeper : MonoBehaviour {
 		isPlaying = gameLogicScript.isPlaying;
 		didPlay = gameLogicScript.didPlay;
 		didWin = gameLogicScript.didWin;
+		isAnimating = gameLogicScript.isAnimating;
 
+		// If it's before the game has started
+		if (!didPlay && !isAnimating) {
+			timeText.text = "Click the sphere to begin";
+	
+		// Don't do anything during initial animation
+		} else if (isAnimating) {
+			timeText.text = "About to begin";
 		// If game is playing and time remains
-		if (isPlaying && timeRemaining > 0) {
-			timeRemaining -= Time.deltaTime;
-			timeText.text = timeRemaining.ToString ("0.00");
-			gameLogicScript.isPlaying = true;
-		
-		// Else if the player won the game
-		} else if (didWin) {
-			timeRemaining = 0;
-			gameLogicScript.isPlaying = false;
-			StartCoroutine ("allFallDown");
-
-			timeText.text = "YOU WIN!";
-				 
-		// If game is not playing
 		} else {
+			
+			if (isPlaying && timeRemaining > 0) {
+				timeRemaining -= Time.deltaTime;
+				timeText.text = timeRemaining.ToString ("0.00");
+				gameLogicScript.isPlaying = true;
+			
+				// Else if the player won the game
+			} else if (didWin) {
+				timeRemaining = 0;
+				gameLogicScript.isPlaying = false;
+				StartCoroutine ("allFallDown");
 
-			timeRemaining = 0;
-			gameLogicScript.isPlaying = false;
-			StartCoroutine ("allFallDown");
-		
-			// If the player lost
-			if (didPlay == true) {
-				timeText.text = "GAME OVER";
-
-			// If the game has not yet begun
+				timeText.text = "YOU WIN!";
+					 
+				// If game is not playing
 			} else {
-				timeText.text = "Click start to begin";
+
+				timeRemaining = 0;
+				gameLogicScript.isPlaying = false;
+				StartCoroutine ("allFallDown");
+			
+				// If the player lost
+				if (didPlay == true) {
+					timeText.text = "GAME OVER";
+
+					// If the game has not yet begun
+				} else {
+					timeText.text = "Click start to begin";
+				}
 			}
 		}
 	}
