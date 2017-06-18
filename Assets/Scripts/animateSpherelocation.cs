@@ -17,6 +17,7 @@ public class animateSpherelocation : MonoBehaviour {
 	float startTime = 0f;
 	bool isClicked = false;
 	bool isAnimating = false;
+	bool didFinishAnimating = false;
 
 	float speed = 2.0F;
 
@@ -36,7 +37,6 @@ public class animateSpherelocation : MonoBehaviour {
 		// Initialize vectors when triggered
 		if (isClicked) {
 			InitializeVectors ();
-
 		}
 			
 		// Animate when triggered
@@ -74,14 +74,21 @@ public class animateSpherelocation : MonoBehaviour {
 
 
 				// Make balls editable again once animation has finished
-				if (distCovered >= speed) {
+				if (distCovered >= 1) {
 					
 					isAnimating = false;
-//					determineWinningSphere ();
+					didFinishAnimating = true;
+
 
 				}
 
 			}
+
+		}
+
+		if (!isAnimating && didFinishAnimating) {
+			didFinishAnimating = false;
+			determineWinningSphere ();
 
 		}
 
