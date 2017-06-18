@@ -100,6 +100,7 @@ public class animateSpherelocation : MonoBehaviour {
 		isClicked = true;
 
 		Vector3 eyeLocation = eye.transform.position;
+		colliderHolder.transform.rotation = Random.rotation;
 
 		caseSwitch = 4;
 //		caseSwitch = Random.Range (0, 5);
@@ -141,8 +142,6 @@ public class animateSpherelocation : MonoBehaviour {
 				newPosition = (vecPath * dist * Mathf.Abs(Mathf.Sin(origins[i].y))) + eyeLocation;
 				break;
 			case 4: // RAYCAST INTERSECTION
-
-
 
 				Collider coll = colliderHolder.GetComponent<Collider> ();
 
