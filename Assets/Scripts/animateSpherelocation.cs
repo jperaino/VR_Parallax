@@ -76,8 +76,9 @@ public class animateSpherelocation : MonoBehaviour {
 
 				// Make balls editable again once animation has finished
 				if (distCovered >= speed) {
+					
 					isAnimating = false;
-
+//					determineWinningSphere ();
 
 				}
 
@@ -91,7 +92,6 @@ public class animateSpherelocation : MonoBehaviour {
 	// Initialize vector values
 	public void InitializeVectors() {
 		isClicked = true;
-		determineWinningSphere ();
 
 		Vector3 eyeLocation = eye.transform.position;
 
@@ -178,15 +178,25 @@ public class animateSpherelocation : MonoBehaviour {
 	}
 
 
-	public void determineWinningSphere() {
+	void determineWinningSphere() {
 
-		// Randomly select sphere
-		int ct = this.gameObject.transform.childCount;
-		int rnd = Random.Range (0, ct);
-		Transform winningSphere = this.gameObject.transform.GetChild (rnd);
+		Transform bestTarget = null;
+		float furthestDistanceSqr = 0;
 
-		// Assign winning sphere to winning parent gameObject
-		winningSphere.parent = winner.transform;
+		foreach (Transform child in this.gameObject.transform) {
+			
+			Vector3 directionToTarget = child.position - eye.transform.position;
+			float dSqrToTarget = directionToTarget.sqrMagnitude;
+			if (dSqrToTarget > furthestDistanceSqr) {
+				furthestDistanceSqr = dSqrToTarget;
+				bestTarget = child;
+			}
+
+			Debug.Log (dSqrToTarget + "huh" + furthestDistanceSqr);
+		}
+
+		bestTarget.parent = winner.transform;
+
 	}
 
 
