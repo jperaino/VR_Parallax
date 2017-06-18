@@ -11,6 +11,10 @@ public class gameLogic : MonoBehaviour {
 	public GameObject gameUI;
 	public timeKeeper timeScript;
 
+	public bool isPlaying = false;
+	public bool didPlay = false;
+	public bool didWin = false;
+
 	// Use this for initialization
 	void Start () {
 
@@ -53,6 +57,9 @@ public class gameLogic : MonoBehaviour {
 	public void gameIsWon () {
 		Debug.Log ("you win");
 
+		isPlaying = false;
+		didPlay = true;
+		didWin = true;
 
 	}
 

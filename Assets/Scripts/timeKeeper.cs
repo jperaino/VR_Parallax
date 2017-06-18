@@ -5,40 +5,45 @@ using UnityEngine.UI;
 
 public class timeKeeper : MonoBehaviour {
 
+	public GameObject gameLogicHolder;
+	public gameLogic gameLogicScript;
+
 	Text timeText;
 	float timeRemaining;
 	int maxFall = 15;
-	public bool isPlaying = false;
-	public bool didPlay = false;
+	public bool isPlaying;
+	public bool didPlay;
+	public bool didWin;
 
 	// Use this for initialization
 	void Start () {
+		gameLogicHolder = GameObject.Find ("gameLogic");
+		gameLogicScript = gameLogicHolder.GetComponent<gameLogic> ();
+
 		isPlaying = false;
 		timeText = GetComponent<Text> ();
-	}
 
-	public void startTimer () {
-		timeText = GetComponent<Text> ();
-		timeRemaining = 20000.0f;
-		isPlaying = true;
-		didPlay = true;
 	}
-
-	
+		
 	// Update is called once per frame
 	void Update () {
+
+		// Check on game status
+		isPlaying = gameLogicScript.isPlaying;
+		didPlay = gameLogicScript.didPlay;
+		didWin = gameLogicScript.didWin;
 
 		// If game is playing and time remains
 		if (timeRemaining > 0) {
 			timeRemaining -= Time.deltaTime;
 			timeText.text = timeRemaining.ToString ("0.00");
-			isPlaying = true;
+			gameLogicScript.isPlaying = true;
 
 		// If game is not playing
 		} else {
 
 			timeRemaining = 0;
-			isPlaying = false;
+			gameLogicScript.isPlaying = false;
 			StartCoroutine ("allFallDown");
 		
 			if (didPlay == true) {
@@ -48,6 +53,16 @@ public class timeKeeper : MonoBehaviour {
 			}
 
 		}
+	}
+
+
+	public void startTimer () {
+
+		timeText = GetComponent<Text> ();
+		timeRemaining = 20000.0f;
+		gameLogicScript.isPlaying = true;
+		gameLogicScript.didPlay = true;
+
 	}
 
 
@@ -87,7 +102,7 @@ public class timeKeeper : MonoBehaviour {
 
 
 	}
-
+		
 
 
 }

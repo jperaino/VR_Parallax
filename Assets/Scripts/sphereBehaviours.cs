@@ -35,15 +35,22 @@ public class sphereBehaviours : MonoBehaviour {
 
 	void OnCollisionEnter()
 	{
+		// Do something only if gamePlayMode is true
 		if (gamePlayMode == true) {
+
+			// Play collision sound
 			this.gameObject.GetComponent<GvrAudioSource> ().Play ();
+
+			// Test if the sphere is the winner
+			if (this.gameObject.tag == "winningSphere") {
+				// End the game
+				Debug.Log ("you hit the winning sphere");
+				gameLogic.GetComponent<gameLogic> ().gameIsWon();
+			}
 		}
 
 
-		if (this.gameObject.tag == "winningSphere") {
-			Debug.Log ("you hit the winning sphere");
-			gameLogic.GetComponent<gameLogic> ().gameIsWon();
-		}
+
 
 	}
 		
