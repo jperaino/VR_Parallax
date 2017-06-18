@@ -18,7 +18,7 @@ public class animateSpherelocation : MonoBehaviour {
 	bool isClicked = false;
 	bool isAnimating = false;
 
-	float speed = 100.0F;
+	float speed = 2.0F;
 
 	// Select distortion method
 	int caseSwitch;
@@ -42,25 +42,24 @@ public class animateSpherelocation : MonoBehaviour {
 		// Animate when triggered
 		if (isAnimating) {
 
+			// Get camera location
 			Vector3 eyeLocation = eye.transform.position;
 
-
-
-			List<GameObject> children = this.gameObject.GetChildren ();
-
+			// Animate spheres
 			for (int i = 0; i < this.gameObject.transform.childCount; i++) {
 				var currentSphere = this.gameObject.transform.GetChild (i);
 
-				float distCovered = (Time.time - startTime) * speed;
+				// Determine how far sphere should be at this point in time
+				float distCovered = (Time.time - startTime) / speed;
 
-				float fracJourney = distCovered / journeyLengths [i];
+				// Move sphere to new location
+				currentSphere.transform.position = Vector3.Lerp (origins [i], destinations [i], distCovered);
 
-				currentSphere.transform.position = Vector3.Lerp (origins [i], destinations [i], fracJourney);
-
+				// Determine current sphere scale and apply
 				float newDistance = Vector3.Distance (eyeLocation, currentSphere.transform.position);
 				float scaleProportion = newDistance / distances[i];
-
 				float x = scaleProportion * .15f;
+
 				currentSphere.transform.localScale = new Vector3 (x, x, x);
 
 
