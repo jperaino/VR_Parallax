@@ -33,8 +33,8 @@ public class addSpheres : MonoBehaviour {
 
 	public void beginSphereAssembly () {
 
-		caseSwitch = 2 ;
-//		caseSwitch = Random.Range (0, 3);
+//		caseSwitch = 2 ;
+		caseSwitch = Random.Range (0, 3);
 		Debug.Log (caseSwitch);
 
 		// POPULATE SPHERES
@@ -206,10 +206,10 @@ public class addSpheres : MonoBehaviour {
 	void populateCube () {
 		
 		// Define cube dimensions and spacing
-		float edgeCount = 5f;
-		float ptSpc = 1f;
-//		float edgeCount = 15f;
-//		float ptSpc = .75f;
+//		float edgeCount = 5f;
+//		float ptSpc = 1f;
+		float edgeCount = 15f;
+		float ptSpc = .75f;
 
 		// Calculate amount to move cube to center on camera
 //		Vector3 cubeCenter = GameObject.Find ("GvrViewerMain").transform.position;

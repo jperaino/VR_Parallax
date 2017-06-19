@@ -84,7 +84,7 @@ public class timeKeeper : MonoBehaviour {
 		timeText = GetComponent<Text> ();
 
 		// Set length of game
-		timeRemaining = 20000.0f;
+		timeRemaining = 60.0f;
 
 		// Update game status
 		gameLogicScript.isPlaying = true;

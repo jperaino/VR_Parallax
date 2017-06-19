@@ -20,7 +20,7 @@ public class animateSpherelocation : MonoBehaviour {
 	bool didFinishAnimating = false;
 	gameLogic gameLogicScript;
 
-	float speed = 2.0F;
+	float speed = 3.0F;
 
 	// Select distortion method
 	int caseSwitch;
@@ -46,6 +46,14 @@ public class animateSpherelocation : MonoBehaviour {
 
 			// Get camera location
 			Vector3 eyeLocation = gameLogic.eyeLocation;
+
+			// Set speed based on difficulty level
+			if (gameLogic.level < 10.0f) {
+
+				speed = 8.0f - gameLogic.level/2.0f;
+			} else {
+				speed = 3.0f / gameLogic.level;
+			}
 
 			// Animate spheres
 			for (int i = 0; i < this.gameObject.transform.childCount; i++) {
