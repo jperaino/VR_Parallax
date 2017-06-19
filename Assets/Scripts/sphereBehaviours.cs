@@ -25,19 +25,24 @@ public class sphereBehaviours : MonoBehaviour {
 
 	public void fallDown () {
 
-		// Test if the sphere is the winner
-		if (this.gameObject.tag == "winningSphere") {
-			// End the game
-			Debug.Log ("you hit the winning sphere");
-			gameLogic.GetComponent<gameLogic> ().gameIsWon();
+		// Disable if scene is animating
+		if (!gameLogic.GetComponent<gameLogic>().isAnimating) {
+
+			// Test if the sphere is the winner
+			if (this.gameObject.tag == "winningSphere") {
+				// End the game
+				Debug.Log ("you hit the winning sphere");
+				gameLogic.GetComponent<gameLogic> ().gameIsWon ();
+			}
+
+			// Apply rigidbody so that the sphere falls
+			this.GetComponent<Rigidbody> ().useGravity = true;
+			this.GetComponent<Rigidbody> ().constraints = RigidbodyConstraints.None;
+
+			// Move to spheresDone parent gameObject
+			GameObject spheresDone = GameObject.Find ("spheresDone");
+			this.gameObject.transform.parent = spheresDone.transform;
 		}
-
-		GameObject spheresDone = GameObject.Find ("spheresDone");
-
-		this.GetComponent<Rigidbody> ().useGravity = true;
-		this.GetComponent<Rigidbody> ().constraints = RigidbodyConstraints.None;
-		this.gameObject.transform.parent = spheresDone.transform;
-
 	}
 		
 
