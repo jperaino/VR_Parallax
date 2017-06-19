@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class cameraPosition : MonoBehaviour {
 
-	float stepSize = 3.0f;
+	float stepSize = 8.0f;
 	int position;
 	int positionCount = 4;
 	float movementSpeed = 3f;
