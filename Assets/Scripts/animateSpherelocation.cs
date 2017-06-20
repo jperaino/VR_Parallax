@@ -18,6 +18,8 @@ public class animateSpherelocation : MonoBehaviour {
 	bool isClicked = false;
 	bool isAnimating = false;
 	bool didFinishAnimating = false;
+	bool isFoggy = false;
+	bool needToPenalize = false;
 	gameLogic gameLogicScript;
 
 	float speed = 3.0F;
@@ -108,6 +110,21 @@ public class animateSpherelocation : MonoBehaviour {
 
 		}
 
+
+		// Add fog to scene gradually
+		if (isFoggy) {
+
+			// If fog should be increasing, increase it
+			if (RenderSettings.fogDensity < 0.15f) {
+				RenderSettings.fogDensity += 0.01f;
+			
+			// Once fog is done increasing, penalize (if designated)
+			} else if (needToPenalize) {
+				spherePenalty ();
+				needToPenalize = false;
+				isFoggy = false;
+			}
+		}
 	}
 
 
@@ -202,13 +219,17 @@ public class animateSpherelocation : MonoBehaviour {
 		Debug.Log ("add fog");
 		RenderSettings.fog = true;
 		RenderSettings.fogColor = (fogColor);
-		RenderSettings.fogDensity = 0.15f;
+//		RenderSettings.fogDensity = 0.15f;
 		RenderSettings.fogMode = FogMode.ExponentialSquared;
+
+		isFoggy = true;
 
 		Debug.Log (eyeHolder.GetComponent<Camera> ().clearFlags);
 		eyeHolder.GetComponent<Camera>().clearFlags = CameraClearFlags.SolidColor;
 		Debug.Log (eyeHolder.GetComponent<Camera> ().clearFlags);
 		eyeHolder.GetComponent<Camera> ().backgroundColor = fogColor;
+
+		needToPenalize = true;
 	}
 
 
@@ -229,6 +250,56 @@ public class animateSpherelocation : MonoBehaviour {
 
 		bestTarget.parent = winner.transform;
 		bestTarget.tag = "winningSphere";
+
+	}
+
+
+
+	public void spherePenalty() {
+
+		Debug.Log ("penalizing");
+
+		GameObject spheresAll = this.gameObject;
+
+		int startCount = spheresAll.transform.childCount;
+
+		for (int i = startCount - 1 ; i > 0; i--) {
+
+			float rFloat = Random.value;
+			GameObject spheresDone = GameObject.Find ("spheresDone");
+
+			if (rFloat > 0.75f) {
+
+				Transform currentSphere = spheresAll.transform.GetChild(i);
+				currentSphere.GetComponent<Rigidbody> ().useGravity = true;
+				currentSphere.GetComponent<Rigidbody> ().constraints = RigidbodyConstraints.None;
+
+				currentSphere.gameObject.transform.parent = spheresDone.transform;
+			
+			}
+
+
+		}
+
+
+
+		// !!BUG!! Fix would allow modulo or random to eliminate a percentage of spheres
+
+		//		GameObject spheresAll = GameObject.Find ("spheres");
+		//
+		//		for (int i = 0; i < spheresAll.transform.childCount; i++) {
+		//
+		//			if (i%1 == 0) {
+		//				Transform currentSphere = spheresAll.transform.GetChild(i);
+		//				currentSphere.GetComponent<Rigidbody> ().useGravity = true;
+		//				currentSphere.GetComponent<Rigidbody> ().constraints = RigidbodyConstraints.None;
+		//
+		//				GameObject spheresDone = GameObject.Find ("spheresDone");
+		//				currentSphere.gameObject.transform.parent = spheresDone.transform;
+		//
+		//			}
+		//		}
+		//
 
 	}
 
