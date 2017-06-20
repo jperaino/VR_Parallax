@@ -33,6 +33,7 @@ public class animateSpherelocation : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		gameLogicScript = GameObject.Find ("gameLogic").GetComponent<gameLogic> ();
+		RenderSettings.fogDensity = 0.0f;
 	}
 	
 	// Update is called once per frame
@@ -217,10 +218,10 @@ public class animateSpherelocation : MonoBehaviour {
 
 	public void addFog() {
 		Debug.Log ("add fog");
-		RenderSettings.fog = true;
-		RenderSettings.fogColor = (fogColor);
+//		RenderSettings.fog = true;
+//		RenderSettings.fogColor = (fogColor);
 //		RenderSettings.fogDensity = 0.15f;
-		RenderSettings.fogMode = FogMode.ExponentialSquared;
+//		RenderSettings.fogMode = FogMode.ExponentialSquared;
 
 		isFoggy = true;
 
