@@ -269,9 +269,15 @@ public class animateSpherelocation : MonoBehaviour {
 			float rFloat = Random.value;
 			GameObject spheresDone = GameObject.Find ("spheresDone");
 
-			if (rFloat > 0.75f) {
+			// Randomly determine if sphere will fall based on percentage
+			if (rFloat < 0.25f) {
 
 				Transform currentSphere = spheresAll.transform.GetChild(i);
+
+				// Turn off sphere collider to avoid sound performance issues
+				currentSphere.GetComponent<SphereCollider> ().enabled = false;
+
+				// Turn on physics to cause spheres to fall
 				currentSphere.GetComponent<Rigidbody> ().useGravity = true;
 				currentSphere.GetComponent<Rigidbody> ().constraints = RigidbodyConstraints.None;
 
