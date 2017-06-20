@@ -22,6 +22,8 @@ public class animateSpherelocation : MonoBehaviour {
 
 	float speed = 3.0F;
 
+	public Color fogColor = new Color32 (0x00, 0x00, 0x51, 0xFF);
+
 	// Select distortion method
 	int caseSwitch;
 
@@ -194,6 +196,19 @@ public class animateSpherelocation : MonoBehaviour {
 
 	public void scaleItUp() {
 		this.gameObject.transform.localScale += new Vector3 (10, 10, 10);
+	}
+
+	public void addFog() {
+		Debug.Log ("add fog");
+		RenderSettings.fog = true;
+		RenderSettings.fogColor = (fogColor);
+		RenderSettings.fogDensity = 0.15f;
+		RenderSettings.fogMode = FogMode.ExponentialSquared;
+
+		Debug.Log (eyeHolder.GetComponent<Camera> ().clearFlags);
+		eyeHolder.GetComponent<Camera>().clearFlags = CameraClearFlags.SolidColor;
+		Debug.Log (eyeHolder.GetComponent<Camera> ().clearFlags);
+		eyeHolder.GetComponent<Camera> ().backgroundColor = fogColor;
 	}
 
 
