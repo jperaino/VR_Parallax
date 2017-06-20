@@ -15,7 +15,8 @@ public class gameLogic : MonoBehaviour {
 	public GameObject scoreDisplay;
 	public GameObject cameraHolder;
 
-	Text scoreText;
+	public Text levelText;
+	public Text scoreText;
 
 	public static Vector3 eyeLocation = new Vector3 (12f, 6.5f, 0);
 
@@ -32,6 +33,9 @@ public class gameLogic : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		scoreText = scoreDisplay.GetComponent<Text> ();
+
+		levelText = GameObject.Find ("levelText").GetComponent<Text>();
+		levelText.text = level.ToString ();
 	}
 	
 	// Update is called once per frame
